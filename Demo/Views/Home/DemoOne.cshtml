@@ -1,0 +1,40 @@
+﻿@model HyperSlackers.Localization.Demo.Models.DemoOneModel
+
+@{
+    ViewBag.Title = Localized.UI.Home_Index_Title;
+}
+
+<div class="jumbotron">
+    @Localized.UI.Home_Index_Jumbotron
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>@Localized.Models.DemoOneModel</h2>
+        @using (Html.BeginForm("DemoOne", "Home", FormMethod.Post, new { id = "DemoOneForm" }))
+        {
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(m => m.Email)</td>
+                    <td>@Html.TextBoxFor(m => m.Email)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        }
+    </div>
+</div>
