@@ -13,7 +13,6 @@
 
 <#@ IntelliSenseLanguage processor="tangibleT4Editor" language="C#" #>
 <#@ template debug="true" hostspecific="true" #>
-<#@ include file="T4Toolbox.tt" #>
 <#@ assembly name="EnvDTE" #>
 <#@ assembly name="EnvDTE80" #>
 <#@ assembly name="Microsoft.VisualStudio.Shell.Interop.8.0" #>
@@ -34,25 +33,25 @@
 
 <#
     var serviceProvider = Host as IServiceProvider;
-    if (serviceProvider != null) 
+    if (serviceProvider != null)
     {
         Dte = serviceProvider.GetService(typeof(SDTE)) as DTE;
     }
 
     // Fail if we couldn't get the DTE. This can happen when trying to run in TextTransform.exe
-    if (Dte == null) 
+    if (Dte == null)
     {
         throw new Exception("T4MResx can only execute through the Visual Studio host");
     }
 
     Project = GetProjectContainingT4File(Dte);
 
-    if (Project == null) 
+    if (Project == null)
     {
         Error("Could not find the VS Project containing the T4 file.");
         return "Could not find the VS Project containing the T4 file.";
     }
-    
+
     AppRoot = Path.GetDirectoryName(Project.FullName) + '\\';
     RootNamespace = Project.Properties.Item("RootNamespace").Value.ToString();
 
@@ -68,10 +67,10 @@
 
 // Host.TemplateFile = <#= Host.TemplateFile #>
 
-// Make sure the compiler doesn't complain about missing Xml comments
+// Make sure the compiler doesn't complain about missing XML comments
 #pragma warning disable 1591
 
-namespace <#= RootNamespace #> 
+namespace <#= RootNamespace #>
 {
     using SmartFormat;
     using System;
@@ -87,7 +86,7 @@ namespace <#= RootNamespace #>
     using System.Web;
     using System.Web.Mvc;
 
-<# 
+<#
     foreach (var item in rootFiles)
     {
 		WriteLine(GetOutputForResxFile(item, 0));
@@ -115,7 +114,7 @@ Project GetProjectContainingT4File(DTE dte) {
         projectItem.Open(Constants.vsViewKindCode);
     }
 
-    if (AlwaysKeepTemplateDirty) 
+    if (AlwaysKeepTemplateDirty)
     {
         // Mark the .tt file as unsaved. This way it will be saved and update itself next time the
         // project is built. Basically, it keeps marking itself as unsaved to make the next build work.
@@ -197,7 +196,7 @@ string GetOutParams(List<Token> tokens)
 
     StringBuilder sb = new StringBuilder();
 
-	bool useSmartFormat = true; 
+	bool useSmartFormat = true;
 
     foreach (Token token in tokens)
     {
@@ -240,7 +239,7 @@ string MakeIntoValidIdentifier(string arbitraryString)
     var validIdentifier = Regex.Replace(arbitraryString, @"[^A-Za-z0-9-._]", " ");
     //validIdentifier = ConvertToPascalCase(validIdentifier);
 
-    if (Regex.IsMatch(validIdentifier, @"^\d")) 
+    if (Regex.IsMatch(validIdentifier, @"^\d"))
     {
         validIdentifier = "_" + validIdentifier;
     }
@@ -442,7 +441,7 @@ string GetOutputForResxFile(ResxFile file, int indentLevel)
         sb.AppendLine(indent + "\t" + "{");
         sb.AppendLine(indent + "\t\t" + "var culture = Thread.CurrentThread.CurrentCulture;");
         sb.AppendLine(indent + "\t\t" + "var str = ResourceManager.GetString(key, culture);");
-        sb.AppendLine(indent + "\t\t");           
+        sb.AppendLine(indent + "\t\t");
         sb.AppendLine(indent + "\t\t" + "return str;");
         sb.AppendLine(indent + "\t" + "}");
         sb.AppendLine(indent + "\t");
@@ -451,7 +450,7 @@ string GetOutputForResxFile(ResxFile file, int indentLevel)
         sb.AppendLine(indent + "\t" + "private static HtmlString GetResourceHtmlString(string key)");
         sb.AppendLine(indent + "\t" + "{");
         sb.AppendLine(indent + "\t\t" + "var str = GetResourceString(key);");
-        sb.AppendLine(indent + "\t\t");                    
+        sb.AppendLine(indent + "\t\t");
         sb.AppendLine(indent + "\t\t" + "return new HtmlString(str);");
         sb.AppendLine(indent + "\t" + "}");
         sb.AppendLine(indent + "\t");
@@ -528,7 +527,7 @@ string GetOutputForResxFile(ResxFile file, int indentLevel)
             {
                 sb.AppendLine(indent + "\t\t" + string.Format("///<summary> {0} </summary>", item.Comment.Replace("\r\n", "\r\n" + indent + "\t///")));
             }
-            
+
             sb.AppendLine(indent + "\t\t" + "public const string " + item.Name + " = \"" + item.Name + "\";");
         }
         sb.AppendLine(indent + "\t" + "}");
@@ -548,7 +547,7 @@ string GetOutputForResxFile(ResxFile file, int indentLevel)
         //    {
         //        sb.AppendLine(indent + "\t\t" + string.Format("///<summary> {0} </summary>", item.Comment.Replace("\r\n", "\r\n" + indent + "\t///")));
         //    }
-        //    
+        //
         //    sb.AppendLine(indent + "\t\t" + "public const string " + item.Name + " = \"" + fullName.Replace("System.", "System.Localized.").Replace(".Localized.Localized", ".Localized") + "|" + item.Name + "\";");
         //    //sb.AppendLine(indent + "\t\t" + "public static const ResourceNameWithType " + item.Name + " = new ResourceNameWithType(typeof(" + fullName + "), \"" + item.Name + "\");");
         //}

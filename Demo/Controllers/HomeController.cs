@@ -13,6 +13,11 @@ namespace HyperSlackers.Localization.Demo.Controllers
             return View();
         }
 
+        public ActionResult DemoOne()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

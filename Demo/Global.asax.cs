@@ -19,16 +19,16 @@ namespace HyperSlackers.Localization.Demo
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             // HS:
-            // use the convention-based model metadata provider
+            // use the convention-based model meta-data provider
             var metadataProvider = new ConventionModelMetadataProvider(false, // Attribute not required on models
                 typeof(Localized.Models), // Models resource file has highest priority for searching
-                typeof(Localized.Enums), 
+                typeof(Localized.Enums),
                 typeof(Localized.Validation)); // lowest priority
 
             // default is false, so searching for resources searches all resource files for most specific name,
             //   then moves to next most specific name
             // setting to true will search first resource file for all generated names before moving to next resource file
-            //metadataProvider.ResourceTypeHasPriority = false; 
+            //metadataProvider.ResourceTypeHasPriority = false;
             ModelMetadataProviders.Current = metadataProvider;
         }
     }

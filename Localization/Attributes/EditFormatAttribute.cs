@@ -17,7 +17,7 @@ namespace HyperSlackers.Localization
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
     public sealed class EditFormatAttribute : Attribute, IMetadataAware
     {
-        public Type ResourceType { get; set; } 
+        public Type ResourceType { get; set; }
         public string ResourceName { get; set; }
         private string format;
 
@@ -59,9 +59,9 @@ namespace HyperSlackers.Localization
         }
 
         /// <summary>
-        /// When implemented in a class, provides metadata to the model metadata creation process.
+        /// When implemented in a class, provides meta-data to the model meta-data creation process.
         /// </summary>
-        /// <param name="metadata">The model metadata.</param>
+        /// <param name="metadata">The model meta-data.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void OnMetadataCreated(ModelMetadata metadata)
         {

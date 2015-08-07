@@ -19,10 +19,10 @@
 
 // Host.TemplateFile = C:\Dev\HyperSlackers\HyperSlackers.Localization\Demo.Resources\T4resx.tt
 
-// Make sure the compiler doesn't complain about missing Xml comments
+// Make sure the compiler doesn't complain about missing XML comments
 #pragma warning disable 1591
 
-namespace Localized 
+namespace Localized
 {
     using SmartFormat;
     using System;

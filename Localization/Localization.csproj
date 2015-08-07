@@ -214,7 +214,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="T4resx_tt.txt" />
+    <Content Include="T4resx_tt.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -231,7 +233,11 @@
     <PostBuildEvent>echo Post-build for $(ProjectName)
 
 echo Copying $(TargetFileName) to ThirdParty folder
+del /F /Q "C:\Dev\ThirdParty\HyperSlackers\$(ProjectName)\$(TargetFrameworkVersion)\$(ConfigurationName)\*.*"
 xcopy "$(TargetPath)" "C:\Dev\ThirdParty\HyperSlackers\$(ProjectName)\$(TargetFrameworkVersion)\$(ConfigurationName)\" /Y
+xcopy "$(TargetDir)T4resx_tt.txt" "C:\Dev\ThirdParty\HyperSlackers\$(ProjectName)\$(TargetFrameworkVersion)\$(ConfigurationName)\" /Y
+ren "C:\Dev\ThirdParty\HyperSlackers\$(ProjectName)\$(TargetFrameworkVersion)\$(ConfigurationName)\T4resx_tt.txt" "T4resx.tt"
+
 if errorlevel 1 goto BuildEventFailed
 
 if $(ConfigurationName) == Release (
