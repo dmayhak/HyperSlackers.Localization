@@ -24,31 +24,31 @@
 
 namespace Localized
 {
-    using SmartFormat;
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.Reflection;
-    using System.Runtime.CompilerServices;
-    using System.Text;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using System.Web;
-    using System.Web.Mvc;
+	using SmartFormat;
+	using System;
+	using System.Collections.Generic;
+	using System.ComponentModel;
+	using System.Diagnostics;
+	using System.Linq;
+	using System.Reflection;
+	using System.Runtime.CompilerServices;
+	using System.Text;
+	using System.Threading;
+	using System.Threading.Tasks;
+	using System.Web;
+	using System.Web.Mvc;
 
 	[DebuggerNonUserCodeAttribute()]
 	[CompilerGeneratedAttribute()]
 	public static class Enums
 	{
 		#region Resource Manager
-		
+
 		private static global::System.Resources.ResourceManager resourceMan;
-	
+
 		/// <summary> Returns the cached ResourceManager instance used by this class. </summary>
 		[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-		internal static global::System.Resources.ResourceManager ResourceManager 
+		internal static global::System.Resources.ResourceManager ResourceManager
 		{
 			get
 			{
@@ -58,34 +58,34 @@ namespace Localized
 					// ???? global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("", typeof().Assembly);
 					resourceMan = temp;
 				}
-			
+
 				return resourceMan;
 			}
 		}
-		
+
 		/// <summary> Returns the formatted resource string. </summary>
 		[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
 		private static string GetResourceString(string key)
 		{
 			var culture = Thread.CurrentThread.CurrentCulture;
 			var str = ResourceManager.GetString(key, culture);
-			
+
 			return str;
 		}
-		
+
 		/// <summary> Returns the formatted resource string. </summary>
 		[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
 		private static HtmlString GetResourceHtmlString(string key)
 		{
 			var str = GetResourceString(key);
-			
+
 			return new HtmlString(str);
 		}
-		
+
 		#endregion Resource Manager
-		
+
 		#region Keys
-		
+
 		/// <summary> Create </summary>
 		public static string DataTableButtonType_Create { get { return GetResourceString("DataTableButtonType_Create"); } }
 		/// <summary> Delete </summary>
@@ -102,11 +102,11 @@ namespace Localized
 		public static string RoleType_None { get { return GetResourceString("RoleType_None"); } }
 		/// <summary> Superuser </summary>
 		public static string RoleType_Super { get { return GetResourceString("RoleType_Super"); } }
-		
+
 		#endregion Keys
-		
+
 		#region Key Names
-		
+
 		public static class KeyNames
 		{
 			public const string DataTableButtonType_Create = "DataTableButtonType_Create";
@@ -118,22 +118,22 @@ namespace Localized
 			public const string RoleType_None = "RoleType_None";
 			public const string RoleType_Super = "RoleType_Super";
 		}
-		
+
 		#endregion Key Names
 	}
-	
+
 
 	[DebuggerNonUserCodeAttribute()]
 	[CompilerGeneratedAttribute()]
 	public static class Exceptions
 	{
 		#region Resource Manager
-		
+
 		private static global::System.Resources.ResourceManager resourceMan;
-	
+
 		/// <summary> Returns the cached ResourceManager instance used by this class. </summary>
 		[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-		internal static global::System.Resources.ResourceManager ResourceManager 
+		internal static global::System.Resources.ResourceManager ResourceManager
 		{
 			get
 			{
@@ -143,45 +143,45 @@ namespace Localized
 					// ???? global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("", typeof().Assembly);
 					resourceMan = temp;
 				}
-			
+
 				return resourceMan;
 			}
 		}
-		
+
 		/// <summary> Returns the formatted resource string. </summary>
 		[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
 		private static string GetResourceString(string key)
 		{
 			var culture = Thread.CurrentThread.CurrentCulture;
 			var str = ResourceManager.GetString(key, culture);
-			
+
 			return str;
 		}
-		
+
 		/// <summary> Returns the formatted resource string. </summary>
 		[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
 		private static HtmlString GetResourceHtmlString(string key)
 		{
 			var str = GetResourceString(key);
-			
+
 			return new HtmlString(str);
 		}
-		
+
 		#endregion Resource Manager
-		
+
 		#region Keys
-		
+
 		/// <summary> Cannot create a duplicate {itemName}. </summary>
 		public static string CannotCreateDuplicate_Item(string itemName) { return Smart.Format(GetResourceString("CannotCreateDuplicate_Item"), new { itemName = itemName }); }
 		/// <summary> {itemName} already exists. </summary>
 		public static string Item_AlreadyExists(string itemName) { return Smart.Format(GetResourceString("Item_AlreadyExists"), new { itemName = itemName }); }
 		/// <summary> {itemName} not found. </summary>
 		public static string Item_NotFound(string itemName) { return Smart.Format(GetResourceString("Item_NotFound"), new { itemName = itemName }); }
-		
+
 		#endregion Keys
-		
+
 		#region Key Names
-		
+
 		public static class KeyNames
 		{
 			///<summary> PARAMS:{itemName} </summary>
@@ -191,22 +191,22 @@ namespace Localized
 			///<summary> PARAMS:{itemName} </summary>
 			public const string Item_NotFound = "Item_NotFound";
 		}
-		
+
 		#endregion Key Names
 	}
-	
+
 
 	[DebuggerNonUserCodeAttribute()]
 	[CompilerGeneratedAttribute()]
 	public static class Models
 	{
 		#region Resource Manager
-		
+
 		private static global::System.Resources.ResourceManager resourceMan;
-	
+
 		/// <summary> Returns the cached ResourceManager instance used by this class. </summary>
 		[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-		internal static global::System.Resources.ResourceManager ResourceManager 
+		internal static global::System.Resources.ResourceManager ResourceManager
 		{
 			get
 			{
@@ -216,34 +216,34 @@ namespace Localized
 					// ???? global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("", typeof().Assembly);
 					resourceMan = temp;
 				}
-			
+
 				return resourceMan;
 			}
 		}
-		
+
 		/// <summary> Returns the formatted resource string. </summary>
 		[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
 		private static string GetResourceString(string key)
 		{
 			var culture = Thread.CurrentThread.CurrentCulture;
 			var str = ResourceManager.GetString(key, culture);
-			
+
 			return str;
 		}
-		
+
 		/// <summary> Returns the formatted resource string. </summary>
 		[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
 		private static HtmlString GetResourceHtmlString(string key)
 		{
 			var str = GetResourceString(key);
-			
+
 			return new HtmlString(str);
 		}
-		
+
 		#endregion Resource Manager
-		
+
 		#region Keys
-		
+
 		/// <summary> Confirm Password (from resx) </summary>
 		public static string ConfirmPassword { get { return GetResourceString("ConfirmPassword"); } }
 		/// <summary> Demo One Model (from resx) </summary>
@@ -262,11 +262,11 @@ namespace Localized
 		public static string StringThree { get { return GetResourceString("StringThree"); } }
 		/// <summary> String Two (from resx) </summary>
 		public static string StringTwo { get { return GetResourceString("StringTwo"); } }
-		
+
 		#endregion Keys
-		
+
 		#region Key Names
-		
+
 		public static class KeyNames
 		{
 			public const string ConfirmPassword = "ConfirmPassword";
@@ -279,22 +279,22 @@ namespace Localized
 			public const string StringThree = "StringThree";
 			public const string StringTwo = "StringTwo";
 		}
-		
+
 		#endregion Key Names
 	}
-	
+
 
 	[DebuggerNonUserCodeAttribute()]
 	[CompilerGeneratedAttribute()]
 	public static class UI
 	{
 		#region Resource Manager
-		
+
 		private static global::System.Resources.ResourceManager resourceMan;
-	
+
 		/// <summary> Returns the cached ResourceManager instance used by this class. </summary>
 		[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-		internal static global::System.Resources.ResourceManager ResourceManager 
+		internal static global::System.Resources.ResourceManager ResourceManager
 		{
 			get
 			{
@@ -304,67 +304,67 @@ namespace Localized
 					// ???? global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("", typeof().Assembly);
 					resourceMan = temp;
 				}
-			
+
 				return resourceMan;
 			}
 		}
-		
+
 		/// <summary> Returns the formatted resource string. </summary>
 		[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
 		private static string GetResourceString(string key)
 		{
 			var culture = Thread.CurrentThread.CurrentCulture;
 			var str = ResourceManager.GetString(key, culture);
-			
+
 			return str;
 		}
-		
+
 		/// <summary> Returns the formatted resource string. </summary>
 		[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
 		private static HtmlString GetResourceHtmlString(string key)
 		{
 			var str = GetResourceString(key);
-			
+
 			return new HtmlString(str);
 		}
-		
+
 		#endregion Resource Manager
-		
+
 		#region Keys
-		
+
 		/// <summary> &lt;h1&gt;HyperSlackers Localization Demo&lt;/h1&gt;
 		///	    &lt;p class="lead"&gt;This simple demo program shows what our localization library does for you.&lt;/p&gt;
 		///	    &lt;p&gt;&lt;a href="http://www.hyperslackers.com" class="btn btn-primary btn-lg"&gt;Learn more &raquo;&lt;/a&gt;&lt;/p&gt; </summary>
 		public static HtmlString Home_Index_Jumbotron { get { return GetResourceHtmlString("Home_Index_Jumbotron"); } }
 		/// <summary> HyperSlackers Localization Demo Home Page </summary>
 		public static string Home_Index_Title { get { return GetResourceString("Home_Index_Title"); } }
-		
+
 		#endregion Keys
-		
+
 		#region Key Names
-		
+
 		public static class KeyNames
 		{
 			///<summary> HTML: </summary>
 			public const string Home_Index_Jumbotron = "Home_Index_Jumbotron";
 			public const string Home_Index_Title = "Home_Index_Title";
 		}
-		
+
 		#endregion Key Names
 	}
-	
+
 
 	[DebuggerNonUserCodeAttribute()]
 	[CompilerGeneratedAttribute()]
 	public static class Validation
 	{
 		#region Resource Manager
-		
+
 		private static global::System.Resources.ResourceManager resourceMan;
-	
+
 		/// <summary> Returns the cached ResourceManager instance used by this class. </summary>
 		[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-		internal static global::System.Resources.ResourceManager ResourceManager 
+		internal static global::System.Resources.ResourceManager ResourceManager
 		{
 			get
 			{
@@ -374,34 +374,34 @@ namespace Localized
 					// ???? global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("", typeof().Assembly);
 					resourceMan = temp;
 				}
-			
+
 				return resourceMan;
 			}
 		}
-		
+
 		/// <summary> Returns the formatted resource string. </summary>
 		[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
 		private static string GetResourceString(string key)
 		{
 			var culture = Thread.CurrentThread.CurrentCulture;
 			var str = ResourceManager.GetString(key, culture);
-			
+
 			return str;
 		}
-		
+
 		/// <summary> Returns the formatted resource string. </summary>
 		[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
 		private static HtmlString GetResourceHtmlString(string key)
 		{
 			var str = GetResourceString(key);
-			
+
 			return new HtmlString(str);
 		}
-		
+
 		#endregion Resource Manager
-		
+
 		#region Keys
-		
+
 		/// <summary> {0} does not match {1}. </summary>
 		public static string Error_Compare { get { return GetResourceString("Error_Compare"); } }
 		/// <summary> {0} is not a valid credit card number. </summary>
@@ -434,11 +434,11 @@ namespace Localized
 		public static string Error_StringLengthMax { get { return GetResourceString("Error_StringLengthMax"); } }
 		/// <summary> {0} is not a valid URL. </summary>
 		public static string Error_Url { get { return GetResourceString("Error_Url"); } }
-		
+
 		#endregion Keys
-		
+
 		#region Key Names
-		
+
 		public static class KeyNames
 		{
 			public const string Error_Compare = "Error_Compare";
@@ -458,10 +458,10 @@ namespace Localized
 			public const string Error_StringLengthMax = "Error_StringLengthMax";
 			public const string Error_Url = "Error_Url";
 		}
-		
+
 		#endregion Key Names
 	}
-	
+
 
 }
 
