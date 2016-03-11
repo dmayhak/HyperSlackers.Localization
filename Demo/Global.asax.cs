@@ -22,7 +22,7 @@ namespace HyperSlackers.Localization.Demo
             // use the convention-based model meta-data provider
             var metadataProvider = new ConventionModelMetadataProvider(false, // Attribute not required on models
                 typeof(Localized.Models), // Models resource file has highest priority for searching
-                typeof(Localized.Enums),
+                typeof(ABC.Enums),
                 typeof(Localized.Validation)); // lowest priority
 
             // default is false, so searching for resources searches all resource files for most specific name,

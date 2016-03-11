@@ -154,16 +154,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums.cs">
+      <DependentUpon>T4resx.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Exceptions.cs">
+      <DependentUpon>T4resx.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models.cs">
+      <DependentUpon>T4resx.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4resx.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>T4resx.tt</DependentUpon>
     </Compile>
+    <Compile Include="UI.cs">
+      <DependentUpon>T4resx.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Validation.cs">
+      <DependentUpon>T4resx.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Enums.resx">
       <RunCustomToolOn>T4resx.tt</RunCustomToolOn>
+      <CustomToolNamespace>ABC</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Exceptions.resx">
       <RunCustomToolOn>T4resx.tt</RunCustomToolOn>
