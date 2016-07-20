@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.Contracts;
+
 using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
@@ -75,8 +75,8 @@ namespace HyperSlackers.Localization
         /// <param name="additionalResourceTypes">Additional default resource types</param>
         public ConventionModelMetadataProvider(bool requireConventionAttribute, Type defaultResourceType, params Type[] additionalResourceTypes)
         {
-            Contract.Requires<ArgumentNullException>(defaultResourceType != null, "defaultResourceType");
-            Contract.Requires<ArgumentNullException>(additionalResourceTypes != null, "additionalResourceTypes");
+            Helpers.ThrowIfNull(defaultResourceType != null, "defaultResourceType");
+            Helpers.ThrowIfNull(additionalResourceTypes != null, "additionalResourceTypes");
 
             RequireConventionAttribute = requireConventionAttribute;
 

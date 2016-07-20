@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Diagnostics.Contracts;
+
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -17,7 +17,6 @@ namespace HyperSlackers.Localization.Extensions
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns></returns>
-        [Pure]
         public static bool IsNullOrEmpty(this String value)
         {
             return string.IsNullOrEmpty(value);
@@ -28,7 +27,6 @@ namespace HyperSlackers.Localization.Extensions
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns></returns>
-        [Pure]
         public static bool IsNullOrWhiteSpace(this String value)
         {
             return string.IsNullOrWhiteSpace(value);
@@ -39,11 +37,8 @@ namespace HyperSlackers.Localization.Extensions
         /// </summary>
         /// <param name="value">The string to format.</param>
         /// <returns></returns>
-        [Pure]
         public static string SpaceOnUpperCase(this string value)
         {
-            Contract.Ensures(Contract.Result<string>() != null);
-
             if (value.IsNullOrWhiteSpace())
             {
                 return string.Empty;
@@ -57,11 +52,8 @@ namespace HyperSlackers.Localization.Extensions
         /// </summary>
         /// <param name="value">The string to split.</param>
         /// <returns></returns>
-        [Pure]
         private static string[] SplitOnUpperCase(this string value)
         {
-            Contract.Ensures(Contract.Result<string[]>() != null);
-
             if (value.IsNullOrWhiteSpace())
             {
                 return new[] { string.Empty };
@@ -109,10 +101,9 @@ namespace HyperSlackers.Localization.Extensions
         /// </summary>
         /// <param name="value">The string value.</param>
         /// <returns></returns>
-        [Pure]
         public static bool IsAllUpperCase(this string value)
         {
-            Contract.Requires<ArgumentNullException>(value != null, "value");
+            Helpers.ThrowIfNull(value != null, "value");
 
             for (int i = 0; i < value.Length; i++)
             {
@@ -131,11 +122,9 @@ namespace HyperSlackers.Localization.Extensions
         /// <param name="value">The string value.</param>
         /// <param name="args">The arguments.</param>
         /// <returns></returns>
-        [Pure]
         public static string FormatWith(this string value, params object[] args)
         {
-            Contract.Requires<ArgumentNullException>(args != null, "args");
-            Contract.Ensures(Contract.Result<string>() != null);
+            Helpers.ThrowIfNull(args != null, "args");
 
             if (value.IsNullOrWhiteSpace())
             {
@@ -152,12 +141,10 @@ namespace HyperSlackers.Localization.Extensions
         /// <param name="provider">The provider.</param>
         /// <param name="args">The arguments.</param>
         /// <returns></returns>
-        [Pure]
         public static string FormatWith(this string value, IFormatProvider provider, params object[] args)
         {
-            Contract.Requires<ArgumentNullException>(provider != null, "provider");
-            Contract.Requires<ArgumentNullException>(args != null, "args");
-            Contract.Ensures(Contract.Result<string>() != null);
+            Helpers.ThrowIfNull(provider != null, "provider");
+            Helpers.ThrowIfNull(args != null, "args");
 
             if (value.IsNullOrWhiteSpace())
             {
@@ -167,6 +154,6 @@ namespace HyperSlackers.Localization.Extensions
             return Smart.Format(provider, value, args);
         }
 
-        
+
     }
 }

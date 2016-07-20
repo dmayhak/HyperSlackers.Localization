@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+
 
 namespace HyperSlackers.Localization
 {
@@ -33,7 +33,7 @@ namespace HyperSlackers.Localization
         /// <param name="resourceTypes">Additional resource types for lookups</param>
         public MetadataConventionsAttribute(params Type[] resourceTypes)
         {
-            Contract.Requires<ArgumentNullException>(resourceTypes != null, "resourceTypes");
+            Helpers.ThrowIfNull(resourceTypes != null, "resourceTypes");
 
             List<Type> types = new List<Type>();
 

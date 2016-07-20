@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.Contracts;
+
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -14,6 +14,14 @@ namespace HyperSlackers.Localization
 {
     internal static class Helpers
     {
+        public static void ThrowIfNull(bool condition, string paramName)
+        {
+            if (!condition)
+            {
+                throw new ArgumentNullException(paramName);
+            }
+        }
+
         /// <summary>
         /// Retrieves a resource string given the type and name for the resource.
         /// </summary>
@@ -55,7 +63,7 @@ namespace HyperSlackers.Localization
         /// <returns></returns>
         public static string GetResourceString(ResourceLocation location)
         {
-            Contract.Requires<ArgumentNullException>(location != null, "location");
+            Helpers.ThrowIfNull(location != null, "location");
 
             return GetResourceString(location.ResourceType, location.ResourceName);
         }
@@ -68,7 +76,7 @@ namespace HyperSlackers.Localization
         /// <returns></returns>
         public static Type[] GetResourceTypes(Type[] defaultResourceTypes, Type attributeResourceType)
         {
-            Contract.Requires<ArgumentNullException>(defaultResourceTypes != null, "defaultResourceTypes");
+            Helpers.ThrowIfNull(defaultResourceTypes != null, "defaultResourceTypes");
 
             List<Type> resourceTypes = new List<Type>();
             if (attributeResourceType != null)
@@ -88,8 +96,8 @@ namespace HyperSlackers.Localization
         /// <returns></returns>
         public static ResourceLocation LocateResource(Type[] resourceTypes, string[] resourceNames)
         {
-            Contract.Requires<ArgumentNullException>(resourceTypes != null, "resourceTypes");
-            Contract.Requires<ArgumentNullException>(resourceNames != null, "resourceNames");
+            Helpers.ThrowIfNull(resourceTypes != null, "resourceTypes");
+            Helpers.ThrowIfNull(resourceNames != null, "resourceNames");
 
             ConventionModelMetadataProvider provider = ModelMetadataProviders.Current as ConventionModelMetadataProvider;
 
@@ -133,8 +141,7 @@ namespace HyperSlackers.Localization
         /// <returns></returns>
         public static string[] GetResourceNames(string[] defaultResourceNames, string attributeResourceName)
         {
-            Contract.Requires<ArgumentNullException>(defaultResourceNames != null, "defaultResourceNames");
-            Contract.Ensures(Contract.Result<string[]>() != null);
+            Helpers.ThrowIfNull(defaultResourceNames != null, "defaultResourceNames");
 
             List<string> resourceNames = new List<string>();
             if (attributeResourceName != null)
@@ -157,7 +164,7 @@ namespace HyperSlackers.Localization
         /// <returns></returns>
         public static Attribute LocalizeAttribute(Attribute attribute, Type containerType, Type alternateContainerType, string propertyName, Type[] defaultResourceTypes)
         {
-            Contract.Requires<ArgumentNullException>(attribute != null, "attribute");
+            Helpers.ThrowIfNull(attribute != null, "attribute");
 
 
             // TODO: localize DisplayFormatString, EditFormatString, ShortDisplayName, SimpleDisplayText
@@ -223,11 +230,11 @@ namespace HyperSlackers.Localization
         /// <returns></returns>
         public static ValidationAttribute LocalizeValidationAttribute(ValidationAttribute attribute, Type containerType, Type alternateContainerType, string propertyName, Type[] defaultResourceTypes)
         {
-            Contract.Requires<ArgumentNullException>(attribute != null, "attribute");
-            Contract.Requires<ArgumentNullException>(containerType != null, "containerType");
-            Contract.Requires<ArgumentNullException>(propertyName != null, "propertyName");
-            Contract.Requires<ArgumentException>(!propertyName.IsNullOrWhiteSpace());
-            Contract.Requires<ArgumentNullException>(defaultResourceTypes != null, "defaultResourceTypes");
+            Helpers.ThrowIfNull(attribute != null, "attribute");
+            Helpers.ThrowIfNull(containerType != null, "containerType");
+            Helpers.ThrowIfNull(propertyName != null, "propertyName");
+            Helpers.ThrowIfNull(!propertyName.IsNullOrWhiteSpace(), "propertyName");
+            Helpers.ThrowIfNull(defaultResourceTypes != null, "defaultResourceTypes");
 
             Type[] resourceTypes = GetResourceTypes(defaultResourceTypes, attribute.ErrorMessageResourceType);
             string[] resourceNames = GetResourceNames(GetValidationResourceNames(attribute, containerType, alternateContainerType, propertyName), attribute.ErrorMessageResourceName);
@@ -293,9 +300,9 @@ namespace HyperSlackers.Localization
         /// <returns></returns>
         public static string[] GetValidationResourceNames(this ValidationAttribute attribute, Type containerType, Type alternateContainerType, string propertyName)
         {
-            Contract.Requires<ArgumentNullException>(attribute != null, "attribute");
-            Contract.Requires<ArgumentNullException>(propertyName != null, "propertyName");
-            Contract.Requires<ArgumentException>(!propertyName.IsNullOrWhiteSpace());
+            Helpers.ThrowIfNull(attribute != null, "attribute");
+            Helpers.ThrowIfNull(propertyName != null, "propertyName");
+            Helpers.ThrowIfNull(!propertyName.IsNullOrWhiteSpace(), "propertyName");
 
             string shortName = attribute.GetType().Name.Replace("Attribute", string.Empty);
             List<string> suffixes = new List<string>();
@@ -400,10 +407,10 @@ namespace HyperSlackers.Localization
         /// <returns></returns>
         public static DisplayAttribute LocalizeDisplayAttribute(this DisplayAttribute attribute, Type containerType, Type alternateContainerType, string propertyName, Type[] defaultResourceTypes)
         {
-            Contract.Requires<ArgumentNullException>(attribute != null, "attribute");
-            Contract.Requires<ArgumentNullException>(defaultResourceTypes != null, "defaultResourceTypes");
-            Contract.Requires<ArgumentNullException>(propertyName != null, "propertyName");
-            Contract.Requires<ArgumentException>(!propertyName.IsNullOrWhiteSpace());
+            Helpers.ThrowIfNull(attribute != null, "attribute");
+            Helpers.ThrowIfNull(defaultResourceTypes != null, "defaultResourceTypes");
+            Helpers.ThrowIfNull(propertyName != null, "propertyName");
+            Helpers.ThrowIfNull(!propertyName.IsNullOrWhiteSpace(), "propertyName");
 
             //DisplayAttribute attribute = new DisplayAttribute
             //{
@@ -434,7 +441,7 @@ namespace HyperSlackers.Localization
             {
                 attribute.GroupName = Helpers.GetResourceString(location);
             }
-            
+
             // Description (Tooltip)
             resourceNames = GetResourceNames(containerType, alternateContainerType, propertyName, attribute.Description, "Description", "Tooltip");
             location = Helpers.LocateResource(resourceTypes, resourceNames);
@@ -475,10 +482,10 @@ namespace HyperSlackers.Localization
         /// <returns></returns>
         public static DisplayFormatAttribute LocalizeDisplayFormatAttribute(this DisplayFormatAttribute attribute, Type containerType, Type alternateContainerType, string propertyName, Type[] defaultResourceTypes)
         {
-            Contract.Requires<ArgumentNullException>(attribute != null, "attribute");
-            Contract.Requires<ArgumentNullException>(defaultResourceTypes != null, "defaultResourceTypes");
-            Contract.Requires<ArgumentNullException>(propertyName != null, "propertyName");
-            Contract.Requires<ArgumentException>(!propertyName.IsNullOrWhiteSpace());
+            Helpers.ThrowIfNull(attribute != null, "attribute");
+            Helpers.ThrowIfNull(defaultResourceTypes != null, "defaultResourceTypes");
+            Helpers.ThrowIfNull(propertyName != null, "propertyName");
+            Helpers.ThrowIfNull(!propertyName.IsNullOrWhiteSpace(), "propertyName");
 
             //DisplayFormatAttribute attribute = new DisplayFormatAttribute
             //{
@@ -532,10 +539,10 @@ namespace HyperSlackers.Localization
         /// <returns></returns>
         public static EditFormatAttribute LocalizeEditFormatAttribute(this EditFormatAttribute attribute, Type containerType, Type alternateContainerType, string propertyName, Type[] defaultResourceTypes)
         {
-            Contract.Requires<ArgumentNullException>(attribute != null, "attribute");
-            Contract.Requires<ArgumentNullException>(defaultResourceTypes != null, "defaultResourceTypes");
-            Contract.Requires<ArgumentNullException>(propertyName != null, "propertyName");
-            Contract.Requires<ArgumentException>(!propertyName.IsNullOrWhiteSpace());
+            Helpers.ThrowIfNull(attribute != null, "attribute");
+            Helpers.ThrowIfNull(defaultResourceTypes != null, "defaultResourceTypes");
+            Helpers.ThrowIfNull(propertyName != null, "propertyName");
+            Helpers.ThrowIfNull(!propertyName.IsNullOrWhiteSpace(), "propertyName");
 
             //EditFormatAttribute attribute = new EditFormatAttribute
             //{
@@ -567,9 +574,9 @@ namespace HyperSlackers.Localization
         /// <returns></returns>
         private static string[] GetResourceNames(Type containerType, Type alternateContainerType, string propertyName, string resourceName, params string[] suffixes)
         {
-            Contract.Requires<ArgumentNullException>(propertyName != null, "propertyName");
-            Contract.Requires<ArgumentException>(!propertyName.IsNullOrWhiteSpace());
-            Contract.Requires<ArgumentNullException>(suffixes != null, "suffixes");
+            Helpers.ThrowIfNull(propertyName != null, "propertyName");
+            Helpers.ThrowIfNull(!propertyName.IsNullOrWhiteSpace(), "propertyName");
+            Helpers.ThrowIfNull(suffixes != null, "suffixes");
 
             List<string> resourceNames = new List<string>();
             string baseContainerName = null;

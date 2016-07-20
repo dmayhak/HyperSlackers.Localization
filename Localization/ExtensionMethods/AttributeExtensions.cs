@@ -1,7 +1,7 @@
 ﻿using HyperSlackers.Localization;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.Contracts;
+
 using System.Linq;
 using System.Reflection;
 
@@ -17,7 +17,7 @@ namespace HyperSlackers.Localization.Extensions
         /// <returns></returns>
         public static TAttribute GetAttributeOnTypeOrAssembly<TAttribute>(this Type type) where TAttribute : Attribute
         {
-            Contract.Requires<ArgumentNullException>(type != null, "type");
+            Helpers.ThrowIfNull(type != null, "type");
 
             return type.First<TAttribute>() ?? type.Assembly.First<TAttribute>();
         }
@@ -30,7 +30,7 @@ namespace HyperSlackers.Localization.Extensions
         /// <returns></returns>
         public static TAttribute First<TAttribute>(this ICustomAttributeProvider attributeProvider) where TAttribute : Attribute
         {
-            Contract.Requires<ArgumentNullException>(attributeProvider != null, "attributeProvider");
+            Helpers.ThrowIfNull(attributeProvider != null, "attributeProvider");
 
             return attributeProvider.GetCustomAttributes(typeof(TAttribute), true).FirstOrDefault() as TAttribute;
         }
@@ -46,7 +46,7 @@ namespace HyperSlackers.Localization.Extensions
         /// <returns></returns>
         internal static Attribute Localize(this Attribute attribute, Type containerType, Type alternateContainerType, string propertyName, Type[] defaultResourceTypes)
         {
-            Contract.Requires<ArgumentNullException>(attribute != null, "attribute");
+            Helpers.ThrowIfNull(attribute != null, "attribute");
 
             return Helpers.LocalizeAttribute(attribute, containerType, alternateContainerType, propertyName, defaultResourceTypes);
         }

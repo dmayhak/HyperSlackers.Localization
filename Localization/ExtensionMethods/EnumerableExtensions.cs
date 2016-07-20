@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+
 using System.Linq;
 
 namespace HyperSlackers.Localization.Extensions
@@ -17,7 +17,7 @@ namespace HyperSlackers.Localization.Extensions
         /// <returns></returns>
         public static IEnumerable<T> Replace<T>(this IEnumerable<T> collection, T source, T replacement) where T : class
         {
-            Contract.Requires<ArgumentNullException>(collection != null, "collection");
+            Helpers.ThrowIfNull(collection != null, "collection");
 
             var collectionWithout = collection;
 
